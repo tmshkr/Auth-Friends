@@ -1,6 +1,8 @@
 @import "~bootstrap";
+@import "App";
 @import "components/auth/LoginForm";
 @import "components/Friends";
+@import "components/AddFriend";
 
 body {
   margin: 0;

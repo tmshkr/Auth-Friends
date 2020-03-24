@@ -4,11 +4,12 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import PrivateRoute from "./components/auth/PrivateRoute";
 import LoginForm from "./components/auth/LoginForm";
 import Friends from "./components/Friends";
+import AddFriend from "./components/AddFriend";
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <main className="app">
         <ul>
           <li>
             <Link to="/login">Login</Link>
@@ -19,10 +20,11 @@ function App() {
         </ul>
         <Switch>
           <PrivateRoute exact path="/friends" component={Friends} />
+          <PrivateRoute exact path="/friends/add" component={AddFriend} />
           <Route path="/login" component={LoginForm} />
           <Route component={LoginForm} />
         </Switch>
-      </div>
+      </main>
     </Router>
   );
 }
