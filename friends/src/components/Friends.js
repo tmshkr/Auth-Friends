@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Table } from "reactstrap";
+import { Button, Table, Spinner } from "reactstrap";
 
 import axiosWithAuth from "../utils/axios-auth";
 
@@ -23,7 +23,7 @@ function FriendsList(props) {
       .catch(err => console.dir(err));
   };
 
-  if (!friends.length) return <div>Loading...</div>;
+  if (!friends.length) return <Spinner color="primary" />;
 
   return (
     <div className="friends-list">
