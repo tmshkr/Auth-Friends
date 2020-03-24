@@ -39,6 +39,21 @@ function FriendsList(props) {
               <td>{friend.name}</td>
               <td>{friend.age}</td>
               <td>{friend.email}</td>
+              <td>
+                <Button
+                  size="sm"
+                  color="danger"
+                  onClick={() => console.log("delete")}
+                >
+                  delete
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={() => history.push(`/friends/edit/${friend.id}`)}
+                >
+                  edit
+                </Button>
+              </td>
             </tr>
           ))}
         </tbody>

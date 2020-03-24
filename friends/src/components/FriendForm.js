@@ -4,7 +4,7 @@ import { Button, FormGroup, Label } from "reactstrap";
 
 import axiosWithAuth from "../utils/axios-auth";
 
-function AddFriend(props) {
+function FriendForm(props) {
   const { history, match } = props;
   const { handleSubmit, register, errors, setError, setValue } = useForm();
 
@@ -29,7 +29,7 @@ function AddFriend(props) {
   };
 
   return (
-    <form className="form add-friend" onSubmit={handleSubmit(onSubmit)}>
+    <form className="form friend-form" onSubmit={handleSubmit(onSubmit)}>
       <FormGroup>
         <Label for="name">Name</Label>
         <input
@@ -79,4 +79,4 @@ function AddFriend(props) {
   );
 }
 
-export default AddFriend;
+export default FriendForm;
