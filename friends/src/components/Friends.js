@@ -18,6 +18,12 @@ function FriendsList(props) {
 
   return (
     <div className="friends-list">
+      <header>
+        <Button color="primary" onClick={() => history.push("/friends/add")}>
+          Add Friend
+        </Button>
+        <h2>Friends</h2>
+      </header>
       <Table>
         <thead>
           <tr>
