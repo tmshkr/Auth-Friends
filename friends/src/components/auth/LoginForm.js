@@ -14,7 +14,7 @@ function LoginForm(props) {
       .post("http://localhost:5000/api/login", values)
       .then(res => {
         localStorage.setItem("token", res.data.payload);
-        history.push("/protected");
+        history.push("/friends");
       })
       .catch(err => console.dir(err));
   };
