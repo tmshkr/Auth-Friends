@@ -14,6 +14,15 @@ function FriendsList(props) {
       .catch(err => console.dir(err));
   }, []);
 
+  const deleteFriend = id => {
+    axiosWithAuth()
+      .delete(`/api/friends/${id}`)
+      .then(({ data }) => {
+        setFriends(data);
+      })
+      .catch(err => console.dir(err));
+  };
+
   if (!friends.length) return <div>Loading...</div>;
 
   return (
@@ -43,13 +52,15 @@ function FriendsList(props) {
                 <Button
                   size="sm"
                   color="danger"
-                  onClick={() => console.log("delete")}
+                  onClick={() => deleteFriend(friend.id)}
                 >
                   delete
                 </Button>
                 <Button
                   size="sm"
-                  onClick={() => history.push(`/friends/edit/${friend.id}`)}
+                  onClick={() =>
+                    history.push(`/friends/edit/${friend.id}`, friend)
+                  }
                 >
                   edit
                 </Button>
