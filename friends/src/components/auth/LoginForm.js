@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Button, FormGroup, Label, Spinner } from "reactstrap";
 
@@ -9,24 +10,27 @@ function LoginForm(props) {
 
   const onSubmit = values => {
     setLoading(true);
+    axios
+      .post("http://localhost:5000/api/login", values)
+      .then(res => {
+        localStorage.setItem("token", res.data.payload);
+        history.push("/protected");
+      })
+      .catch(err => console.dir(err));
   };
 
   return (
     <>
       <form className="form auth-form" onSubmit={handleSubmit(onSubmit)}>
         <FormGroup>
-          <Label for="email">Email</Label>
+          <Label for="username">Username</Label>
           <input
             className="form-control"
-            name="email"
-            type="email"
-            id="email"
+            name="username"
+            type="username"
+            id="username"
             ref={register({
-              required: "Required",
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: "invalid email address"
-              }
+              required: "Required"
             })}
           />
           <span className="error">{errors.email && errors.email.message}</span>

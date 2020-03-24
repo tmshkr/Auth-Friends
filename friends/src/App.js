@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import PrivateRoute from "./components/auth/PrivateRoute";
 import LoginForm from "./components/auth/LoginForm";
+import Friends from "./components/Friends";
 
 function App() {
   return (
@@ -13,13 +14,11 @@ function App() {
             <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link to="/protected">Protected Page</Link>
+            <Link to="/friends">Friends</Link>
           </li>
         </ul>
         <Switch>
-          <PrivateRoute exact path="/protected">
-            <h2>hello</h2>
-          </PrivateRoute>
+          <PrivateRoute exact path="/friends" component={Friends} />
           <Route path="/login" component={LoginForm} />
           <Route component={LoginForm} />
         </Switch>
