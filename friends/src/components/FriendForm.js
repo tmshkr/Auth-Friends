@@ -9,23 +9,41 @@ function FriendForm(props) {
   const { handleSubmit, register, errors, setError, setValue } = useForm();
 
   const { id } = match.params;
+  console.log(history);
 
   useEffect(() => {
     if (id) {
-      console.log(id);
+      const friend = history.location.state;
+      if (!friend) history.push("/friends");
+      const values = [];
+      for (let field in friend) {
+        values.push({ [field]: friend[field] });
+      }
+      setValue(values);
     }
     // eslint-disable-next-line
   }, [id]);
 
-  const onSubmit = values => {
-    console.log(values);
+  const addFriend = values => {
     axiosWithAuth()
       .post("/api/friends", values)
       .then(({ data }) => {
-        console.log(data);
         history.push("/friends");
       })
       .catch(err => console.dir(err));
+  };
+
+  const editFriend = (values, id) => {
+    axiosWithAuth()
+      .put(`/api/friends/${id}`, values)
+      .then(({ data }) => {
+        history.push("/friends");
+      })
+      .catch(err => console.dir(err));
+  };
+
+  const onSubmit = values => {
+    id ? editFriend(values, id) : addFriend(values);
   };
 
   return (
