@@ -13,6 +13,7 @@ function FriendForm(props) {
 
   useEffect(() => {
     if (id) {
+      // TODO: lift state to avoid passing it through history.location
       const friend = history.location.state;
       if (!friend) history.push("/friends");
       const values = [];
