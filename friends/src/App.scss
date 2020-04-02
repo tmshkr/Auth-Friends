@@ -1,0 +1,17 @@
+main.app {
+  header.top {
+    background: #03a9f4;
+    margin-bottom: 3rem;
+    nav {
+      display: flex;
+      justify-content: flex-end;
+      max-width: 900px;
+      margin: auto;
+      a {
+        color: white;
+        font-weight: bold;
+        padding: 1rem;
+      }
+    }
+  }
+}
